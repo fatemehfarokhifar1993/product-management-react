@@ -8,6 +8,10 @@ class ProductList extends Component {
       { title: "JavaScript", price: "79 $", id: 3, quantity: 2 },
     ],
   };
+  removeHandler = (id) => {
+    const filteredProducts = this.state.products.filter((p) => p.id !== id);
+    this.setState({ products: filteredProducts });
+  };
   render() {
     return (
       <div>
@@ -17,6 +21,7 @@ class ProductList extends Component {
               name={product.title}
               price={product.price}
               key={product.id}
+              onDelete={() => this.removeHandler(product.id)}
             />
           );
         })}
