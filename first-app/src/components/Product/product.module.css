@@ -8,6 +8,9 @@
     justify-content: space-around;
     background-color: #f8fafc;
 }
+.product:nth-child(odd){
+    background-color: #e2e8f0;
+}
 .button{
     font-size: 16px;
     color:#334155;
@@ -25,7 +28,7 @@
     display: inline-block;
     width: 25px;
     height: 25px;
-    background-color: #e2e8f8;
+    background-color: #94a3b8;
     color:#334155;
     border-radius: 50%;
     display: flex;

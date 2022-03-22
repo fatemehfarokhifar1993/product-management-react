@@ -15,28 +15,41 @@ class App extends Component {
     this.setState({ products: filteredProducts });
   };
   incrementHandler = (id) => {
+    const index = this.state.products.findIndex((item) => item.id === id);
+    const product = { ...this.state.products[index] };
+    product.quantity++;
     const products = [...this.state.products];
-    const selectedItem = products.find((p) => p.id === id);
-    selectedItem.quantity++;
+    products[index] = product;
     this.setState({ products: products });
   };
-  decrementHandler = (id) => {
-    const products = [...this.state.products];
-    const selectedItem = products.find((p) => p.id === id);
-    if (selectedItem.quantity === 1) {
-      const filteredProducts =products.filter((p) => p.id !== id);
+  decrementHandler = (id) => { 
+    const index = this.state.products.findIndex((item) => item.id === id);
+    const product = { ...this.state.products[index] };
+    if (product.quantity === 1) {
+      const filteredProducts = this.state.products.filter((p) => p.id !== id);
       this.setState({ products: filteredProducts });
-  
     } else {
-      selectedItem.quantity--;
+      const products = [...this.state.products];
+      product.quantity--;
+      products[index] = product;
       this.setState({ products: products });
     }
   };
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevState)
+  }
   render() {
     return (
       <div className="container">
-        <NavBar totalItems={this.state.products.filter((p)=>p.quantity>0).length} />
-        <ProductList products={this.state.products}  onRemove={this.removeHandler} onIncrement={this.incrementHandler} onDecrement={this.decrementHandler}/>
+        <NavBar
+          totalItems={this.state.products.filter((p) => p.quantity > 0).length}
+        />
+        <ProductList
+          products={this.state.products}
+          onRemove={this.removeHandler}
+          onIncrement={this.incrementHandler}
+          onDecrement={this.decrementHandler}
+        />
       </div>
     );
   }
