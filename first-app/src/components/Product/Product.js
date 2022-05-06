@@ -10,8 +10,7 @@ const Product = ({product,onDecrement,onIncrement,onDelete}) => {
       <button className={`${styles.button}`} onClick={onDecrement}>
        {product.quantity>1?"-": <BiTrash color="red"/>}
       </button>
-      <button
-        className={`${styles.button} ${styles.inc}`}
+      <button className={`${styles.button} ${styles.inc}`}
         onClick={onIncrement}
       >
         +
