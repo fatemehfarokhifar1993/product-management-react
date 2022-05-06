@@ -1,14 +1,10 @@
 import React, { useContext } from "react";
 import { useState } from "react";
+import { productsData } from "../../db/products";
 const ProductContent = React.createContext();
 const ProductContentDispatcher = React.createContext();
-
 const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState([
-    { title: "React.js", price: "99 $", id: 1, quantity: 1 },
-    { title: "Node.js", price: "89 $", id: 2, quantity: 2 },
-    { title: "JavaScript", price: "79 $", id: 3, quantity: 3 },
-  ]);
+  const [products, setProducts] = useState(productsData);
   return (
     <ProductContent.Provider value={products}>
       <ProductContentDispatcher.Provider value={setProducts}>
@@ -22,7 +18,7 @@ export default ProductsProvider;
 export const useProducts = () => useContext(ProductContent);
 export const useProductsActions = () => {
   const setProducts = useContext(ProductContentDispatcher);
-const products=useContext(ProductContent);
+  const products = useContext(ProductContent);
   const removeHandler = (id) => {
     const filteredProducts = products.filter((p) => p.id !== id);
     setProducts(filteredProducts);
@@ -48,5 +44,5 @@ const products=useContext(ProductContent);
       setProducts(updatedProduct);
     }
   };
-  return {removeHandler,incrementHandler,decrementHandler}
+  return { removeHandler, incrementHandler, decrementHandler };
 };
