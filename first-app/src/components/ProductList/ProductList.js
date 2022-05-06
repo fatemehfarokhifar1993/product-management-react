@@ -1,24 +1,31 @@
-import React, { Component } from "react";
 import Product from "../Product/Product";
-class ProductList extends Component {
+import { useProducts, useProductsActions } from "../Providers/ProductsProvider";
 
-  render() {
-    const {products,onDecrement,onIncrement,onRemove}=this.props;
-    return (
-      <div>
-        {products.map((product) => {
-          return (
-            <Product
-              product={product} key={product.id}
-              onDelete={() => onRemove(product.id)}
-              onIncrement={() => onIncrement(product.id)}
-              onDecrement={() => onDecrement(product.id)}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-}
+const ProductList = (props) => {
+  const products=useProducts()
+  const {removeHandler,incrementHandler,decrementHandler}=useProductsActions()
+  const renderProduct = () => {
+
+    if (products.length === 0) return <div>there is no product in cart</div>;
+    return products.map((product) => {
+      return (
+        <Product
+          product={product}
+          key={product.id}
+          onDelete={() => removeHandler(product.id)}
+          onIncrement={() => incrementHandler(product.id)}
+          onDecrement={() => decrementHandler(product.id)}
+        />
+      );
+    });
+  };
+
+  return (
+    <div>
+      {!products.length && <div>go to Shopping</div>}
+      {renderProduct()}
+    </div>
+  );
+};
 
 export default ProductList;
