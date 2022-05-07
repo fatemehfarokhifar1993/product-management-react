@@ -44,5 +44,23 @@ export const useProductsActions = () => {
       setProducts(updatedProduct);
     }
   };
-  return { removeHandler, incrementHandler, decrementHandler };
+  const filterSizeHandler = (selectedOption) => {
+    console.log(selectedOption.value);
+    if (selectedOption.value === "") {
+      setProducts(productsData);
+    } else {
+      const updatedProducts = productsData.filter(
+        (p) => p.availableSizes.indexOf(selectedOption.value) >= 0
+      );
+      console.log(productsData);
+      setProducts(updatedProducts);
+    }
+  };
+
+  return {
+    removeHandler,
+    incrementHandler,
+    decrementHandler,
+    filterSizeHandler,
+  };
 };
