@@ -1,17 +1,21 @@
-.product{
-    width:60rem;
-    margin-top: 15px;
+  .product{
+    width:100%;
+   margin-bottom: 15px;
     border-radius: 10px;
     padding: 25px 40px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-    display:flex;
-    justify-content: space-around;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;   
+    display: grid;
+    grid-template-columns: 1fr 0.4fr 0.1fr 0.1fr  0.1fr 0.1fr;
+    column-gap: 15px;
+    align-items: center;
+    justify-content: center;
     background-color: #f8fafc;
 }
 .product:nth-child(odd){
     background-color: #e2e8f0;
 }
-.button{
+ 
+  .button{
     font-size: 16px;
     color:#334155;
     background-color: #fff;
@@ -20,14 +24,18 @@
     outline: none;
     padding: 5px 10px;
     cursor: pointer;
+    width: 35px;
+    height: 35px;
 }
 .inc{
     background-color: #e2e8f0;
 }
-.value{
+  
+  
+  .quantity{
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     background-color: #94a3b8;
     color:#334155;
     border-radius: 50%;
@@ -35,4 +43,52 @@
     justify-content: center;
     align-items: center;
     font-size: 14px;
+    padding: 2px;
+    
 }
+  
+.delete {
+    color: red;
+    border: 1px solid red;
+    min-width: none;
+  }
+  
+  @media screen and (max-width: 900px) {
+    .product {
+      padding:15px;
+      width:100%;
+/*       grid-template-columns: 6fr 0.8fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: "title      .       .       delete"
+                            "price decrement quantity increment"; */
+grid-template-areas:
+"title title title title        .      . delete"
+"price price    .   . decrement quantity increment"
+
+;
+      row-gap: 15px;
+      align-items: center;
+      justify-content: center;
+    }
+    .title {
+      grid-area: title;
+    }
+    .delete {
+        grid-area: delete;
+        
+    }
+    .quantity {
+        justify-self: center;
+        grid-area: quantity;
+    }
+    .inc{
+        grid-area: increment;
+    }
+    .decrement {
+        grid-area: decrement;
+    }
+    .price {
+      grid-area: price;
+    }
+  }
+  

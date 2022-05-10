@@ -45,22 +45,56 @@ export const useProductsActions = () => {
     }
   };
   const filterSizeHandler = (selectedOption) => {
-    console.log(selectedOption.value);
-    if (selectedOption.value === "") {
+    if (selectedOption.value === "" || selectedOption.value === undefined) {
       setProducts(productsData);
     } else {
       const updatedProducts = productsData.filter(
         (p) => p.availableSizes.indexOf(selectedOption.value) >= 0
       );
-      console.log(productsData);
       setProducts(updatedProducts);
     }
   };
-
+  const sortPriceHandler = (selectedOption) => {
+    const updatedProduct = [...products];
+    if (selectedOption.value === "lowest") {
+      const sortedProducts = updatedProduct.sort((a, b) => {
+        if (a.price > b.price) {
+          return 1;
+        }
+        if (a.price < b.price) {
+          return -1;
+        }
+        return 0;
+      });
+      setProducts(sortedProducts);
+    } else {
+      const sortedProducts = updatedProduct.sort((a, b) => {
+        if (a.price < b.price) {
+          return 1;
+        }
+        if (a.price > b.price) {
+          return -1;
+        }
+        return 0;
+      });
+      setProducts(sortedProducts);
+    }
+  };
+  const searchHandler = (e) => {
+    if (e.target.value ==="") {
+      setProducts(products)
+    }
+    else{
+      const filteredProducts=products.filter((p)=>p.title.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase()))
+    setProducts(filteredProducts)
+    }
+  };
   return {
     removeHandler,
     incrementHandler,
     decrementHandler,
     filterSizeHandler,
+    sortPriceHandler,
+    searchHandler,
   };
 };

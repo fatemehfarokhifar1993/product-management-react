@@ -1,6 +1,6 @@
 import Product from "../Product/Product";
 import { useProducts, useProductsActions } from "../Providers/ProductsProvider";
-
+import styles from "./ProductList.module.css"
 const ProductList = (props) => {
   const products=useProducts()
   const {removeHandler,incrementHandler,decrementHandler}=useProductsActions()
@@ -21,7 +21,7 @@ const ProductList = (props) => {
   };
 
   return (
-    <div>
+    <div className={styles.productList}>
       {!products.length && <div>go to Shopping</div>}
       {renderProduct()}
     </div>

@@ -1,0 +1,20 @@
+
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #1e293b;
+    width: 400px;
+    border-radius: 5px;
+    font-size: 17px;
+    padding: 1rem 1rem 3rem 1rem;
+    margin-bottom: 2rem;
+  }
+  @media screen and (max-width: 900px) {
+    .filter {
+      width: 95%;
+      font-size: 15px;
+    }
+}

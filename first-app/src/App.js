@@ -5,13 +5,15 @@ import NavBar from "./components/NavBar/NavBar";
 import Filter from "./components/Filter/Filter";
 const App = () => {
   return (
-    <ProductsProvider>
-      <div className="container">
+    <div className="App">
+      <ProductsProvider>
         <NavBar />
-        <Filter />
-        <ProductList />
-      </div>
-    </ProductsProvider>
+        <div className="container">
+          <Filter />
+          <ProductList />
+        </div>
+      </ProductsProvider>
+    </div>
   );
 };
 
