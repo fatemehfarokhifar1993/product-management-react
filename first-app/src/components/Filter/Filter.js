@@ -18,18 +18,18 @@ const sortOptions = [
 ];
 
 const Filter = () => {
-  const { filterSizeHandler, sortPriceHandler } = useProductsActions();
+  const dispatch = useProductsActions();
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
 console.log(sort)
   const filterHandler = (selectedOption) => {
-    sortPriceHandler(sort);
-    filterSizeHandler(selectedOption);
+    dispatch({type:"filter",selectedOption:selectedOption})
+    dispatch({type:"sort",selectedOption:sort})
     setFilter(selectedOption);
   };
   const sortHandler = (selectedOption) => {
+    dispatch({type:"sort",selectedOption:selectedOption})
     setSort(selectedOption);
-    sortPriceHandler(selectedOption);
   };
 
   return (
@@ -40,14 +40,12 @@ console.log(sort)
         value={filter}
         onChange={filterHandler}
         options={filterOptions}
-        defaultValue={filterOptions[1]}
       />
       <SelectComponent
         title="sort by price"
         value={sort}
         onChange={sortHandler}
         options={sortOptions}
-        defaultValue={sortOptions[0]}
       />
     </div>
   );
