@@ -34,7 +34,7 @@ console.log(sort)
 
   return (
     <div className={styles.filter}>
-      <SearchBar filter={filter} />
+      <SearchBar filter={filter} sort={sort}/>
       <SelectComponent
         title="filter by size"
         value={filter}
