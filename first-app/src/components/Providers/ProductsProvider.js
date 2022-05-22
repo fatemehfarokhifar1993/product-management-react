@@ -6,7 +6,7 @@ const ProductContentDispatcher = React.createContext();
 
 const reducer=(state,action)=>{
 switch (action.type) {
-  case "icrement":{
+  case "increment":{
     const index = state.findIndex((item) => item.id === action.id);
     const product = { ...state[index] };
     product.quantity++;
